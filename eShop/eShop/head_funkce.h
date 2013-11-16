@@ -5,6 +5,15 @@
 
 using namespace std;
 
+typedef struct vyrobek{
+	int id;
+	char nazev[40]; 
+	char popis[128]; 
+	int cena; 
+	int sklad; 
+
+}vyrobek;
+
 /*
 @brief popis fce
 @param popis parametru1
@@ -12,3 +21,5 @@ using namespace std;
 */
 
 //void nazev(param1, int param2);
+
+vyrobek *nacteniVyrobku(vyrobek *poleVyrobku, int &velikostPole);

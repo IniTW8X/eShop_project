@@ -15,6 +15,7 @@ Aplikace "eShop a zbozi v nem" vypracovana jako semestralni projekt v predmetu P
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>
+#include <fstream>
 #include "head_funkce.h"
 
 using namespace std;
@@ -26,27 +27,28 @@ using namespace std;
 @return vraci 0 pri spravnem ukonceni programu
 */
 int main(int argc, char * argv[]){
-	int volba;
+	int volba = 0, velikostPole = 0;
+	vyrobek *poleVyrobku = NULL;
 	string chyba;
 
 
 	int vyber = 0;
-
-	system("cls"); // vymazani konzole
-	cout << "***************************************************************" << endl
-		<< "*         Program pro praci s eShopem a jeho nabidkou         *" << endl
-		<< "***************************************************************" << endl;
-
-	cout << endl << "Menu:" << endl
-		<< "1. Nacteni zaznamu" << endl
-		<< "2. Vypis zbozi serazeneho dle ceny" << endl
-		<< "3. Vypis zbozi v zadanem cenovem intervalu" << endl
-		<< "4. Vypis zbozi, ktere je mozne objednat, do Vami zadane castky" << endl
-		<< "5. Ukoncit program" << endl << endl;
-
 	while (true){
+		system("cls"); // vymazani konzole
+		cout << "***************************************************************" << endl
+			<< "*         Program pro praci s eShopem a jeho nabidkou         *" << endl
+			<< "***************************************************************" << endl;
+
+		cout << endl << "Menu:" << endl
+			<< "1. Nacteni zaznamu" << endl
+			<< "2. Vypis zbozi serazeneho dle ceny" << endl
+			<< "3. Vypis zbozi v zadanem cenovem intervalu" << endl
+			<< "4. Vypis zbozi, ktere je mozne objednat, do Vami zadane castky" << endl
+			<< "5. Ukoncit program" << endl << endl;
+
+	
 		while (true){
-			cout << "Zadej volbu: ";
+			cout << "Zadejte volbu: ";
 			cin >> volba;
 
 			if (cin.fail()){
@@ -58,9 +60,8 @@ int main(int argc, char * argv[]){
 		}
 
 		switch (volba){
-		case 1: {}
-			break;
-
+		case 1: { poleVyrobku = nacteniVyrobku(poleVyrobku, velikostPole); }
+			break;  
 		case 2:	{}
 			break;
 
