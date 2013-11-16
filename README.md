@@ -6,6 +6,8 @@ Console c/c++ application that simulates e-shop.
 - sorts items by given criteria
 - exports sorted items to .html
 
+
+TODO:
 - [DONE] read items from .csv file
 - sort items by price (1)
 - select all items in user-given price interval (2)
