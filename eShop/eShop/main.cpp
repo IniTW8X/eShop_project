@@ -64,7 +64,10 @@ int main(int argc, char * argv[]){
 		case 1: 
 			poleVyrobku = nacteniVyrobku(poleVyrobku, velikostPole);
 			break;  
-		case 2:	
+		case 2:	{
+			poleVyrobku = serazeniDleCeny(poleVyrobku, velikostPole);
+			exportDoHtml(poleVyrobku, velikostPole);
+			}
 			break;
 
 		case 3: 

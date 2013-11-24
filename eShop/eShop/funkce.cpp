@@ -27,7 +27,7 @@ vyrobek  *nacteniVyrobku(vyrobek *poleVyrobku, int &velikostPole){
 	vstup.open((const char *)nazevSouboru.c_str());
 
 	if (!vstup.is_open()){
-		cout << "CHYBA - soubor se neotevøel." << endl;
+		cout << "CHYBA - soubor se neotevrel." << endl;
 		poleVyrobku = NULL;
 		return poleVyrobku;
 	}
@@ -118,3 +118,47 @@ int exportDoHtml(vyrobek *poleVyrobku, int velikostPole){
 	return 0;
 }
 
+vyrobek *serazeniDleCeny(vyrobek *poleVyrobku, int velikostPole){
+	string serazeni;
+
+	system("cls");
+	cout << "Serazeni zaznamu dle ceny" << endl 
+		 << "*************************" << endl;
+	cout << "Seradit zaznamy vzestupne ci sestupne?[vzestupne/sestupne]:" << endl;
+
+	cin >> serazeni;
+	if (cin.fail())
+	{
+		cout << "CHYBA - spatne zvolene serazeni." << endl;
+		return poleVyrobku;
+	}
+
+	if (serazeni == "vzestupne"){
+		for (int i = 0; i < velikostPole - 1; i++){
+			for (int j = 0; j<velikostPole - 1; j++){
+				if (poleVyrobku[j].cena > poleVyrobku[j + 1].cena){
+					vyrobek pom = poleVyrobku[j];
+					poleVyrobku[j] = poleVyrobku[j + 1];
+					poleVyrobku[j + 1] = pom;
+				}
+			}
+		}
+	}
+	else if (serazeni == "sestupne"){
+		for (int i = 0; i < velikostPole - 1; i++){
+			for (int j = 0; j < velikostPole - 1; j++){
+				if (poleVyrobku[j].cena < poleVyrobku[j + 1].cena)
+				{
+					vyrobek pom = poleVyrobku[j];
+					poleVyrobku[j] = poleVyrobku[j + 1];
+					poleVyrobku[j + 1] = pom;
+				}
+			}
+		}
+	}
+	else{
+		cout << "CHYBA - spatne zvolene serazeni." << endl;
+		return poleVyrobku;
+	}
+	return poleVyrobku;
+}
