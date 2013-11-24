@@ -44,7 +44,8 @@ int main(int argc, char * argv[]){
 			<< "2. Vypis zbozi serazeneho dle ceny" << endl
 			<< "3. Vypis zbozi v zadanem cenovem intervalu" << endl
 			<< "4. Vypis zbozi, ktere je mozne objednat, do Vami zadane castky" << endl
-			<< "5. Ukoncit program" << endl << endl;
+			<< "5. Export aktualne nactenych zaznamu" << endl
+			<< "6. Ukoncit program" << endl << endl;
 
 	
 		while (true){
@@ -60,18 +61,28 @@ int main(int argc, char * argv[]){
 		}
 
 		switch (volba){
-		case 1: { poleVyrobku = nacteniVyrobku(poleVyrobku, velikostPole); }
+		case 1: 
+			poleVyrobku = nacteniVyrobku(poleVyrobku, velikostPole);
 			break;  
-		case 2:	{}
+		case 2:	
 			break;
 
-		case 3: {}
+		case 3: 
 			break;
-		case 4: {}
+		case 4: 
+			break;
+		case 5:{
+			if (velikostPole == 0){
+				system("cls");
+				cout << "Seznam knih je prazdny." << endl;
+			}
+			else  exportDoHtml(poleVyrobku, velikostPole);
+			}
 			break;
 
-		case 5: {//free(neco);
-					return 0; }
+		case 6: 
+			//free(neco);
+			return 0; 
 			break;
 
 		default: cout << "*Zadna operace neodpovida Vasemu vstupu." << endl;

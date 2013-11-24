@@ -23,3 +23,5 @@ typedef struct vyrobek{
 //void nazev(param1, int param2);
 
 vyrobek *nacteniVyrobku(vyrobek *poleVyrobku, int &velikostPole);
+
+int exportDoHtml(vyrobek *poleVyrobku, int velikostPole);
