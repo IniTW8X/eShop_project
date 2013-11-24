@@ -27,3 +27,5 @@ vyrobek *nacteniVyrobku(vyrobek *poleVyrobku, int &velikostPole);
 int exportDoHtml(vyrobek *poleVyrobku, int velikostPole);
 
 vyrobek *serazeniDleCeny(vyrobek *poleVyrobku, int velikostPole);
+
+vyrobek *filtrInterval(vyrobek *poleVyrobku, int &velikostPole);

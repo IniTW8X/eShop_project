@@ -70,7 +70,16 @@ int main(int argc, char * argv[]){
 			}
 			break;
 
-		case 3: 
+		case 3: {
+			if (velikostPole == 0){
+				system("cls");
+				cout << "Seznam knih je prazdny." << endl;
+				system("pause");
+			}
+			else{
+				filtrInterval(poleVyrobku, velikostPole);
+				}
+			}
 			break;
 		case 4: 
 			break;
@@ -78,6 +87,7 @@ int main(int argc, char * argv[]){
 			if (velikostPole == 0){
 				system("cls");
 				cout << "Seznam knih je prazdny." << endl;
+				system("pause");
 			}
 			else  exportDoHtml(poleVyrobku, velikostPole);
 			}

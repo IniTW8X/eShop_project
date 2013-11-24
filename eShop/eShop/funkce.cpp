@@ -28,6 +28,7 @@ vyrobek  *nacteniVyrobku(vyrobek *poleVyrobku, int &velikostPole){
 
 	if (!vstup.is_open()){
 		cout << "CHYBA - soubor se neotevrel." << endl;
+		system("pause");
 		poleVyrobku = NULL;
 		return poleVyrobku;
 	}
@@ -68,6 +69,7 @@ vyrobek  *nacteniVyrobku(vyrobek *poleVyrobku, int &velikostPole){
 	if (velikostPole == 0)
 	{
 		cout << "Soubor je prazdny." << endl;
+		system("pause");
 		vstup.close();
 		return poleVyrobku;
 	}
@@ -93,6 +95,7 @@ int exportDoHtml(vyrobek *poleVyrobku, int velikostPole){
 
 	if (!vystup.is_open()){
 		cout << "CHYBA - soubor se neotevrel." << endl;
+		system("pause");
 		return 1;
 	}
 
@@ -130,6 +133,7 @@ vyrobek *serazeniDleCeny(vyrobek *poleVyrobku, int velikostPole){
 	if (cin.fail())
 	{
 		cout << "CHYBA - spatne zvolene serazeni." << endl;
+		system("pause");
 		return poleVyrobku;
 	}
 
@@ -158,7 +162,61 @@ vyrobek *serazeniDleCeny(vyrobek *poleVyrobku, int velikostPole){
 	}
 	else{
 		cout << "CHYBA - spatne zvolene serazeni." << endl;
+		system("pause");
 		return poleVyrobku;
 	}
 	return poleVyrobku;
+}
+
+vyrobek *filtrInterval(vyrobek *poleVyrobku, int &velikostPole){
+	int dolniMez;
+	int horniMez;
+	int novaVelikostPole = 0;
+	vyrobek *novePoleVyrobku = NULL;
+
+	system("cls");
+	cout << "Zadej dolni mez intervalu: ";
+	cin >> dolniMez;
+	if (cin.fail()){
+		cout << "Dolni mez byla spatne zadana" << endl;
+		system("pause");
+		return poleVyrobku;
+	}
+
+	cout << "Zadej horni mez intervalu: ";
+	cin >> horniMez;
+	if (cin.fail()){
+		cout << "Horni mez byla spatne zadana" << endl;
+		system("pause");
+		return poleVyrobku;
+	}
+
+	if (dolniMez > horniMez){
+		cout << "Dolni mez nemuze byt vetsi nez horni mez!" << endl;
+		system("pause");
+		return poleVyrobku;
+	}
+
+	for (int i = 0; i < velikostPole; i++){
+		if (poleVyrobku[i].cena >= dolniMez && poleVyrobku[i].cena <= horniMez){
+			if (novaVelikostPole == 0){
+				novePoleVyrobku = (vyrobek*)malloc(sizeof(vyrobek)*(++novaVelikostPole));
+			}
+			else{
+				novePoleVyrobku = (vyrobek*)realloc(novePoleVyrobku, sizeof(vyrobek)*(++novaVelikostPole));
+			}
+			novePoleVyrobku[novaVelikostPole - 1] = poleVyrobku[i];
+		}
+	}
+	if (novaVelikostPole == 0){
+		cout << "Nebyl nalezen zadny zaznam v tomto intervalu roku." << endl;
+		system("pause");
+		return poleVyrobku;
+	}
+	else
+	{
+		velikostPole = novaVelikostPole;
+		free(poleVyrobku);
+		exportDoHtml(novePoleVyrobku, novaVelikostPole);
+	}
 }
