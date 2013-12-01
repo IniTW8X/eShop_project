@@ -15,7 +15,7 @@ using namespace std;
 vyrobek  *nacteniVyrobku(vyrobek *poleVyrobku, int &velikostPole){
 	string kopStr;
 	string nazevSouboru;
-	string cesta = "/Users/Petr/Desktop/";
+	string cesta = "../vstupnidata/";
 	string pripona = ".csv";
 	int cisloZaznamu = 0;
 
@@ -27,7 +27,7 @@ vyrobek  *nacteniVyrobku(vyrobek *poleVyrobku, int &velikostPole){
 	vstup.open((const char *)nazevSouboru.c_str());
 
 	if (!vstup.is_open()){
-		cout << "CHYBA - soubor se neotevrel." << endl;
+		cout << "CHYBA - soubor se neotevrel nebo nebyl nalezen." << endl;
 		system("pause");
 		poleVyrobku = NULL;
 		return poleVyrobku;
@@ -68,7 +68,7 @@ vyrobek  *nacteniVyrobku(vyrobek *poleVyrobku, int &velikostPole){
 
 	if (velikostPole == 0)
 	{
-		cout << "Soubor je prazdny." << endl;
+		cout << "Soubor neobsahuje zadna data." << endl;
 		system("pause");
 		vstup.close();
 		return poleVyrobku;
@@ -81,12 +81,12 @@ vyrobek  *nacteniVyrobku(vyrobek *poleVyrobku, int &velikostPole){
 
 int exportDoHtml(vyrobek *poleVyrobku, int velikostPole){
 	string nazevSouboru;
-	string cesta = "/Users/Petr/Desktop/";
+	string cesta = "../vystupnidata/";
 	string pripona = ".html";
 	int i = 0;
 
 	system("cls");
-	cout << "Zadej nazev souboru pro export do HTML (bez pripony):" << endl;
+	cout << "Zadejte prosim nazev souboru pro export do HTML (bez pripony):" << endl;
 	cin >> nazevSouboru;
 	nazevSouboru = cesta + nazevSouboru + pripona;
 
@@ -94,7 +94,7 @@ int exportDoHtml(vyrobek *poleVyrobku, int velikostPole){
 	vystup.open((const char *)nazevSouboru.c_str());
 
 	if (!vystup.is_open()){
-		cout << "CHYBA - soubor se neotevrel." << endl;
+		cout << "CHYBA - soubor se nebylo mozne nalezt nebo je poskozen." << endl;
 		system("pause");
 		return 1;
 	}
@@ -175,7 +175,9 @@ vyrobek *filtrInterval(vyrobek *poleVyrobku, int &velikostPole){
 	vyrobek *novePoleVyrobku = NULL;
 
 	system("cls");
-	cout << "Zadej dolni mez intervalu: ";
+	cout << "Zobrazeni vyrobku ze zadaneho intervalu" << endl
+		<< "***************************************" << endl;
+	cout << "Zadej dolni mez intervalu:" << endl;
 	cin >> dolniMez;
 	if (cin.fail()){
 		cout << "Dolni mez byla spatne zadana" << endl;
@@ -183,7 +185,7 @@ vyrobek *filtrInterval(vyrobek *poleVyrobku, int &velikostPole){
 		return poleVyrobku;
 	}
 
-	cout << "Zadej horni mez intervalu: ";
+	cout << "Zadej horni mez intervalu:" << endl;
 	cin >> horniMez;
 	if (cin.fail()){
 		cout << "Horni mez byla spatne zadana" << endl;
@@ -217,6 +219,54 @@ vyrobek *filtrInterval(vyrobek *poleVyrobku, int &velikostPole){
 	{
 		velikostPole = novaVelikostPole;
 		free(poleVyrobku);
+		exportDoHtml(novePoleVyrobku, novaVelikostPole);
+	}
+}
+
+vyrobek *vypisDoCeny(vyrobek *poleVyrobku, int &velikostPole){
+	int horniMez;
+	int novaVelikostPole = 0;
+	vyrobek *novePoleVyrobku = NULL;
+
+	system("cls");
+	cout << "Zobrazeni vsech produktu do Vami zadane castky" << endl
+		<< "**********************************************" << endl;
+	cout << "Zadejte Vasi maximalni castku nakupu:" << endl;
+	cin >> horniMez;
+	if (cin.fail()){
+		cout << "Horni mez byla spatne zadana" << endl;
+		system("pause");
+		return poleVyrobku;
+	}
+
+	for (int i = 0; i < velikostPole; i++){
+		if (poleVyrobku[i].cena <= horniMez && poleVyrobku[i].sklad != 0){
+			if (novaVelikostPole == 0){
+				novePoleVyrobku = (vyrobek*)malloc(sizeof(vyrobek)*(++novaVelikostPole));
+			}
+			else{
+				novePoleVyrobku = (vyrobek*)realloc(novePoleVyrobku, sizeof(vyrobek)*(++novaVelikostPole));
+			}
+			novePoleVyrobku[novaVelikostPole - 1] = poleVyrobku[i];
+		}
+	}
+	if (novaVelikostPole == 0){
+		cout << "Nebyl nalezen zadny vyrobek do Vami zadane castky." << endl;
+		system("pause");
+		return poleVyrobku;
+	}
+	else
+	{
+		//serazeni dle skladu
+		for (int i = 0; i < novaVelikostPole - 1; i++){
+			for (int j = 0; j < novaVelikostPole - 1; j++){
+				if (novePoleVyrobku[j].sklad < novePoleVyrobku[j + 1].sklad){
+					vyrobek pom = novePoleVyrobku[j];
+					novePoleVyrobku[j] = novePoleVyrobku[j + 1];
+					novePoleVyrobku[j + 1] = pom;
+				}
+			}
+		}
 		exportDoHtml(novePoleVyrobku, novaVelikostPole);
 	}
 }

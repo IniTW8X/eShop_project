@@ -29,3 +29,5 @@ int exportDoHtml(vyrobek *poleVyrobku, int velikostPole);
 vyrobek *serazeniDleCeny(vyrobek *poleVyrobku, int velikostPole);
 
 vyrobek *filtrInterval(vyrobek *poleVyrobku, int &velikostPole);
+
+vyrobek *vypisDoCeny(vyrobek *poleVyrobku, int &velikostPole);

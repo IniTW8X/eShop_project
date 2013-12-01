@@ -20,13 +20,7 @@ Aplikace "eShop a zbozi v nem" vypracovana jako semestralni projekt v predmetu P
 
 using namespace std;
 
-/*
-@brief Hlavni funkce programu, ktera vola vsechny ostatni funkce
-@param argc Pocet parametru pri spusteni z prikazove radky
-@param argv Seznam retezcu pri spusteni z prikazove radky
-@return vraci 0 pri spravnem ukonceni programu
-*/
-int main(int argc, char * argv[]){
+int main(){
 	int volba = 0, velikostPole = 0;
 	vyrobek *poleVyrobku = NULL;
 	string chyba;
@@ -34,7 +28,7 @@ int main(int argc, char * argv[]){
 
 	int vyber = 0;
 	while (true){
-		system("cls"); // vymazani konzole
+		system("cls");
 		cout << "***************************************************************" << endl
 			<< "*         Program pro praci s eShopem a jeho nabidkou         *" << endl
 			<< "***************************************************************" << endl;
@@ -55,25 +49,31 @@ int main(int argc, char * argv[]){
 			if (cin.fail()){
 				cin.clear();
 				cin >> chyba;
-				cout << "*Zadna operace neodpovida Vasemu vstupu." << endl;
+				cout << "Zadna operace neodpovida Vasemu vstupu." << endl;
+				system("pause");
 			}
 			else { break; }
 		}
 
 		switch (volba){
 		case 1: 
-			poleVyrobku = nacteniVyrobku(poleVyrobku, velikostPole);
+			if (poleVyrobku == NULL){
+				poleVyrobku = nacteniVyrobku(poleVyrobku, velikostPole);
+			}
+			else{
+				cout << "Vyrobky jsou jiz nacteny." << endl;
+				system("pause");
+			}
 			break;  
-		case 2:	{
+		case 2:	
 			poleVyrobku = serazeniDleCeny(poleVyrobku, velikostPole);
 			exportDoHtml(poleVyrobku, velikostPole);
-			}
 			break;
 
 		case 3: {
 			if (velikostPole == 0){
 				system("cls");
-				cout << "Seznam knih je prazdny." << endl;
+				cout << "Seznam vyrobku je prazdny, nactete nejprve zaznamy." << endl;
 				system("pause");
 			}
 			else{
@@ -82,11 +82,19 @@ int main(int argc, char * argv[]){
 			}
 			break;
 		case 4: 
+			if (velikostPole == 0){
+				system("cls");
+				cout << "Seznam vyrobku je prazdny, nactete nejprve zaznamy." << endl;
+				system("pause");
+			}
+			else{
+				vypisDoCeny(poleVyrobku, velikostPole);
+			}
 			break;
 		case 5:{
 			if (velikostPole == 0){
 				system("cls");
-				cout << "Seznam knih je prazdny." << endl;
+				cout << "Seznam vyrobku je prazdny, nactete nejprve zaznamy." << endl;
 				system("pause");
 			}
 			else  exportDoHtml(poleVyrobku, velikostPole);
@@ -94,11 +102,13 @@ int main(int argc, char * argv[]){
 			break;
 
 		case 6: 
-			//free(neco);
+			free(poleVyrobku);
 			return 0; 
 			break;
 
-		default: cout << "*Zadna operace neodpovida Vasemu vstupu." << endl;
+		default: 
+			cout << "Zadna operace neodpovida Vasemu vstupu." << endl; 
+			system("pause");
 		}
 	}
 	return 0;
