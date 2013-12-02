@@ -1,14 +1,10 @@
-/*
-@file main.cpp
-@brief Hlavni soubor programu.
-*
-/*
-@author Petr Macak
-@version 0.1
-*/
-/*
-@mainpage Petr Macak, MAC0345, cv. støeda 16:00
-Aplikace "eShop a zbozi v nem" vypracovana jako semestralni projekt v predmetu Programovani I
+/**
+	\file main.cpp
+	\brief Hlavni soubor programu.
+	\author Petr Macak
+	\version 1.2
+	\mainpage Petr Macak, MAC0345, cv. streda 16:00
+	Aplikace "eShop a zbozi v nem" vypracovana jako semestralni projekt v predmetu Programovani I (2013/2014)
 */
 
 #include <iostream>
@@ -16,18 +12,23 @@ Aplikace "eShop a zbozi v nem" vypracovana jako semestralni projekt v predmetu P
 #include <stdlib.h>
 #include <string>
 #include <fstream>
-#include "head_funkce.h"
+#include "head_funkce.h" /** \file <head_funkce.h>
+							 \brief Hlavickovy soubor, ktery obsahuje deklarace vsech funkci pouzitych v hlavnim souboru aplikace main.cpp.
+						*/
 
 using namespace std;
 
-int main(){
+/**
+	\brief Hlavni funkce programu obsahujici jednoduche UI pro komunikaci s uzivatelem volajici dalsi funkce
+	\return Vraci hodnotu 0
+*/
+int main()
+{
 	int volba = 0, velikostPole = 0;
 	vyrobek *poleVyrobku = NULL;
-	string chyba;
 
-
-	int vyber = 0;
-	while (true){
+	while (true)
+	{
 		system("cls");
 		cout << "***************************************************************" << endl
 			<< "*         Program pro praci s eShopem a jeho nabidkou         *" << endl
@@ -42,25 +43,31 @@ int main(){
 			<< "6. Ukoncit program" << endl << endl;
 
 	
-		while (true){
+		while (true)
+		{
 			cout << "Zadejte volbu: ";
 			cin >> volba;
 
-			if (cin.fail()){
-				cin.clear();
-				cin >> chyba;
+			if (cin.fail())
+			{
 				cout << "Zadna operace neodpovida Vasemu vstupu." << endl;
 				system("pause");
 			}
-			else { break; }
+			else 
+			{ 
+				break; 
+			}
 		}
 
-		switch (volba){
+		switch (volba)
+		{
 		case 1: 
-			if (poleVyrobku == NULL){
+			if (poleVyrobku == NULL)
+			{
 				poleVyrobku = nacteniVyrobku(poleVyrobku, velikostPole);
 			}
-			else{
+			else
+			{
 				cout << "Vyrobky jsou jiz nacteny." << endl;
 				system("pause");
 			}
@@ -70,34 +77,41 @@ int main(){
 			exportDoHtml(poleVyrobku, velikostPole);
 			break;
 
-		case 3: {
-			if (velikostPole == 0){
+		case 3: 
+			if (velikostPole == 0)
+			{
 				system("cls");
 				cout << "Seznam vyrobku je prazdny, nactete nejprve zaznamy." << endl;
 				system("pause");
 			}
-			else{
+			else
+			{
 				filtrInterval(poleVyrobku, velikostPole);
-				}
+				exportDoHtml(poleVyrobku, velikostPole);
 			}
 			break;
 		case 4: 
-			if (velikostPole == 0){
+			if (velikostPole == 0)
+			{
 				system("cls");
 				cout << "Seznam vyrobku je prazdny, nactete nejprve zaznamy." << endl;
 				system("pause");
 			}
-			else{
+			else
+			{
 				vypisDoCeny(poleVyrobku, velikostPole);
 			}
 			break;
-		case 5:{
-			if (velikostPole == 0){
+		case 5:
+			if (velikostPole == 0)
+			{
 				system("cls");
 				cout << "Seznam vyrobku je prazdny, nactete nejprve zaznamy." << endl;
 				system("pause");
 			}
-			else  exportDoHtml(poleVyrobku, velikostPole);
+			else
+			{ 
+				exportDoHtml(poleVyrobku, velikostPole);
 			}
 			break;
 
