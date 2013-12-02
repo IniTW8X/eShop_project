@@ -11,11 +11,11 @@ using namespace std;
 */
 typedef struct
 {
-	int id;
-	char nazev[40]; 
-	char popis[128]; 
-	int cena; 
-	int sklad; 
+	int id;/**< \brief promenna pro unikatni hlavni klic ID*/
+	char nazev[40]; /**< \brief promenna pro nazev vyrobku */
+	char popis[128]; /**< \brief promenna pro popis vyrobku */
+	int cena; /**< \brief promenna pro cenu vyrobku */
+	int sklad; /**< \brief promenna pro pocet kusu vyrobku na sklade */
 
 }vyrobek;
 

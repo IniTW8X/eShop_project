@@ -1,0 +1,11 @@
+Petr Macák
+MAC0345
+cviceni streda 16:00-17:30
+
+Zadání - eShop a zboží v nìm
+
+Z CSV souboru naètìte zboží, které je v nabídce eShopu (nejménì položky: ID, název, popis, jednotková cena, poèet kusù na skladì). 
+Do výstupního HTML souboru zapište:
+- výpis všeho zboží, usporádaný podle ceny,
+- výpis zboží v zadaném intervalu cen,
+- pro zadanou èástku doporuète všechno zboží, které za ni lze nakoupit (berte v úvahu poèet zboží na skladì).

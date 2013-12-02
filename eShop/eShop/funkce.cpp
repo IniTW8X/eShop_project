@@ -1,4 +1,4 @@
-/*
+/**
 	\file funkce.cpp
 	\brief Soubor s definici vsech funkci pouzitych v programu volanych hlavnim souborem aplikace main.cpp.
 */
