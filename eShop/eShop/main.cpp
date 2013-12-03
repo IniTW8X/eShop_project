@@ -62,15 +62,7 @@ int main()
 		switch (volba)
 		{
 		case 1: 
-			if (poleVyrobku == NULL)
-			{
 				poleVyrobku = nacteniVyrobku(poleVyrobku, velikostPole);
-			}
-			else
-			{
-				cout << "Vyrobky jsou jiz nacteny." << endl;
-				system("pause");
-			}
 			break;  
 		case 2:	
 			poleVyrobku = serazeniDleCeny(poleVyrobku, velikostPole);
@@ -86,7 +78,7 @@ int main()
 			}
 			else
 			{
-				filtrInterval(poleVyrobku, velikostPole);
+				poleVyrobku = filtrInterval(poleVyrobku, velikostPole);
 				exportDoHtml(poleVyrobku, velikostPole);
 			}
 			break;
@@ -99,7 +91,7 @@ int main()
 			}
 			else
 			{
-				vypisDoCeny(poleVyrobku, velikostPole);
+				poleVyrobku = vypisDoCeny(poleVyrobku, velikostPole);
 			}
 			break;
 		case 5:

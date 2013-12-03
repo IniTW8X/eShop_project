@@ -253,12 +253,14 @@ vyrobek *filtrInterval(vyrobek *poleVyrobku, int &velikostPole)
 	if (novaVelikostPole == 0)
 	{
 		cout << "Nebyl nalezen zadny zaznam v tomto intervalu roku." << endl;
+		free(novePoleVyrobku);
 		system("pause");
 		return poleVyrobku;
 	}
 	else
 	{
 		velikostPole = novaVelikostPole;
+		free(poleVyrobku);
 		return novePoleVyrobku;
 	}
 }
@@ -321,7 +323,7 @@ vyrobek *vypisDoCeny(vyrobek *poleVyrobku, int &velikostPole)
 				}
 			}
 		}
-
+		free(poleVyrobku);
 		exportDoHtml(novePoleVyrobku, novaVelikostPole);
 		velikostPole = novaVelikostPole;
 		return novePoleVyrobku;
