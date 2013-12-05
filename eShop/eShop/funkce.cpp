@@ -207,7 +207,7 @@ vyrobek *filtrInterval(vyrobek *poleVyrobku, int &velikostPole)
 		<< "***************************************" << endl;
 	cout << "Zadej dolni mez intervalu:" << endl;
 	cin >> dolniMez;
-	if (cin.fail())
+	if (cin.fail() || dolniMez < 0)
 	{
 		cout << "Dolni mez byla spatne zadana" << endl;
 		system("pause");
@@ -216,7 +216,7 @@ vyrobek *filtrInterval(vyrobek *poleVyrobku, int &velikostPole)
 
 	cout << "Zadej horni mez intervalu:" << endl;
 	cin >> horniMez;
-	if (cin.fail())
+	if (cin.fail() || horniMez < 0)
 	{
 		cout << "Horni mez byla spatne zadana" << endl;
 		system("pause");
