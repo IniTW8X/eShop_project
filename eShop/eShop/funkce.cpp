@@ -22,6 +22,9 @@ vyrobek  *nacteniVyrobku(vyrobek *poleVyrobku, int &velikostPole)
 	string pripona = ".csv";
 	int cisloZaznamu = 0;
 
+	poleVyrobku = NULL;
+	velikostPole = 0;
+
 	system("cls");
 	cout << "Zadejte prosim nazev souboru, ktery chcete nacist (bez pripony)" << endl;
 	cin >> nazevSouboru;
