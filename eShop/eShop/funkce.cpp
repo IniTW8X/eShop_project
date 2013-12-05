@@ -195,8 +195,6 @@ vyrobek *serazeniDleCeny(vyrobek *poleVyrobku, int velikostPole)
 	{
 		cout << "CHYBA - spatne zvolene serazeni." << endl;
 		system("pause");
-		poleVyrobku = NULL;
-		velikostPole = 0;
 		return poleVyrobku;
 	}
 	return poleVyrobku;
