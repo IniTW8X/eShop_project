@@ -150,6 +150,8 @@ vyrobek *serazeniDleCeny(vyrobek *poleVyrobku, int velikostPole)
 	{
 		cout << "CHYBA - spatne zvolene serazeni." << endl;
 		system("pause");
+		poleVyrobku = NULL;
+		velikostPole = 0;
 		return poleVyrobku;
 	}
 
@@ -190,6 +192,8 @@ vyrobek *serazeniDleCeny(vyrobek *poleVyrobku, int velikostPole)
 	{
 		cout << "CHYBA - spatne zvolene serazeni." << endl;
 		system("pause");
+		poleVyrobku = NULL;
+		velikostPole = 0;
 		return poleVyrobku;
 	}
 	return poleVyrobku;
@@ -211,6 +215,8 @@ vyrobek *filtrInterval(vyrobek *poleVyrobku, int &velikostPole)
 	{
 		cout << "Dolni mez byla spatne zadana" << endl;
 		system("pause");
+		poleVyrobku = NULL;
+		velikostPole = 0;
 		return poleVyrobku;
 	}
 
@@ -220,6 +226,8 @@ vyrobek *filtrInterval(vyrobek *poleVyrobku, int &velikostPole)
 	{
 		cout << "Horni mez byla spatne zadana" << endl;
 		system("pause");
+		poleVyrobku = NULL;
+		velikostPole = 0;
 		return poleVyrobku;
 	}
 
@@ -227,6 +235,8 @@ vyrobek *filtrInterval(vyrobek *poleVyrobku, int &velikostPole)
 	{
 		cout << "Dolni mez nemuze byt vetsi nez horni mez!" << endl;
 		system("pause");
+		poleVyrobku = NULL;
+		velikostPole = 0;
 		return poleVyrobku;
 	}
 
@@ -255,6 +265,8 @@ vyrobek *filtrInterval(vyrobek *poleVyrobku, int &velikostPole)
 		cout << "Nebyl nalezen zadny zaznam v tomto intervalu roku." << endl;
 		free(novePoleVyrobku);
 		system("pause");
+		poleVyrobku = NULL;
+		velikostPole = 0;
 		return poleVyrobku;
 	}
 	else
@@ -281,6 +293,8 @@ vyrobek *vypisDoCeny(vyrobek *poleVyrobku, int &velikostPole)
 	{
 		cout << "Horni mez byla spatne zadana" << endl;
 		system("pause");
+		poleVyrobku = NULL;
+		velikostPole = 0;
 		return poleVyrobku;
 	}
 	/**
@@ -307,6 +321,8 @@ vyrobek *vypisDoCeny(vyrobek *poleVyrobku, int &velikostPole)
 	{
 		cout << "Nebyl nalezen zadny vyrobek do Vami zadane castky." << endl;
 		system("pause");
+		poleVyrobku = NULL;
+		velikostPole = 0;
 		return poleVyrobku;
 	}
 	else

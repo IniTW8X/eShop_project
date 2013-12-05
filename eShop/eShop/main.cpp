@@ -64,9 +64,29 @@ int main()
 		case 1: 
 				poleVyrobku = nacteniVyrobku(poleVyrobku, velikostPole);
 			break;  
-		case 2:	
-			poleVyrobku = serazeniDleCeny(poleVyrobku, velikostPole);
-			exportDoHtml(poleVyrobku, velikostPole);
+		case 2:				
+			if (velikostPole == 0)
+			{
+				system("cls");
+				cout << "Seznam vyrobku je prazdny, nactete nejprve zaznamy." << endl;
+				system("pause");
+			}
+			else
+			{
+				poleVyrobku = serazeniDleCeny(poleVyrobku, velikostPole);
+				if (velikostPole == 0)
+				{
+					system("cls");
+					cout << "Nastala chyba pri uzivatelskem vstupu, nactene prosim znovu zaznamy." << endl;
+					system("pause");
+				}
+				else
+				{
+					exportDoHtml(poleVyrobku, velikostPole);
+					poleVyrobku = NULL;
+					velikostPole = 0;
+				}
+			}
 			break;
 
 		case 3: 
@@ -79,7 +99,18 @@ int main()
 			else
 			{
 				poleVyrobku = filtrInterval(poleVyrobku, velikostPole);
-				exportDoHtml(poleVyrobku, velikostPole);
+				if (velikostPole == 0)
+				{
+					system("cls");
+					cout << "Nastala chyba pri uzivatelskem vstupu, nactene prosim znovu zaznamy." << endl;
+					system("pause");
+				}
+				else
+				{
+					exportDoHtml(poleVyrobku, velikostPole);
+					poleVyrobku = NULL;
+					velikostPole = 0;
+				}
 			}
 			break;
 		case 4: 
@@ -92,6 +123,8 @@ int main()
 			else
 			{
 				poleVyrobku = vypisDoCeny(poleVyrobku, velikostPole);
+				poleVyrobku = NULL;
+				velikostPole = 0;
 			}
 			break;
 		case 5:
