@@ -16,8 +16,8 @@ TODO:
 - [x] export N.2 scenario to .html
 - [x] export N.3 scenario to .html
 - [x] doxygen documentation
-- [ ] user documentation
-- [ ] programmer documentation
-- [ ] presentation
+- [x] user documentation
+- [x] programmer documentation
+- [x] presentation
 
 
